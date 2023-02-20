@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 
-const PeopleForm = ({ kisiler, submitFn }) => {
+const PeopleForm = ({ kisiler, submitFn, toast }) => {
   const [isim, setIsim] = useState("");
   const [error, setError] = useState(null);
 
+  const basariliInsanEklemeToastify = () =>
+    toast("Kişi başarıyla insanlar listesine eklendi!");
+
   useEffect(() => {
     if (kisiler.includes(isim)) {
-      setError("Bu isim daha önce eklenmiş")
+      setError("Bu isim daha önce eklenmiş");
     } else {
-      setError(null)
+      setError(null);
     }
-  }, [isim, kisiler])
+  }, [isim, kisiler]);
 
   function handleIsimChange(e) {
     setIsim(e.target.value);
@@ -44,6 +47,7 @@ const PeopleForm = ({ kisiler, submitFn }) => {
           className="submit-button"
           type="submit"
           disabled={isim.length === 0 || error}
+          onClick={basariliInsanEklemeToastify}
         >
           Ekle
         </button>
