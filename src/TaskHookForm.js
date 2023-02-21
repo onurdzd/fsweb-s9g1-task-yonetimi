@@ -71,9 +71,8 @@ const TaskHookForm = ({ kisiler, submitFn, toast }) => {
                     value: true,
                     message: "Lütfen en az bir kişi seçin",
                   },
-                  maxLength: {
-                    value: 10,
-                    message: "En fazla 3 kişi seçebilirsiniz",
+                  validate: (kisi) => {
+                    return kisi.length <= 3 || "En fazla 3 kişi seçebilirsiniz";
                   },
                 })}
               />
